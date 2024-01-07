@@ -140,7 +140,7 @@ def handle_planet(planet_id):
         results = {}
         planet = db.session.get(Planets, planet_id)
         if not planet:
-            response_body['message']: 'Planet not found'
+            response_body['message'] = 'Planet not found'
             return response_body, 400
         results['planet'] = planet.serialize()
         response_body['message'] = 'Planet found'
@@ -302,7 +302,7 @@ def favourites_by_user(user_id):
     favourite_characters = db.session.execute(db.select(FavouriteCharacters).where(FavouriteCharacters.user_id == user_id)).scalars()
     results['favourite_planets'] = [row.serialize() for row in favourite_planets]
     results['favourite_characters'] = [row.serialize() for row in favourite_characters]
-    response_body['message'] = 'Listado de favoritos del usuario'
+    response_body['message'] = 'Favourite Users'
     response_body['results'] = results
     return response_body, 200
 
